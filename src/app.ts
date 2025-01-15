@@ -43,11 +43,7 @@ function initApplication(): express.Application {
   app.use(
     "/swagger",
     swaggerUi.serve,
-    swaggerUi.setup(undefined, {
-      swaggerOptions: {
-        url: "https://flightbooking-rust.vercel.app/swagger.json",
-      },
-    })
+    swaggerUi.setup("https://flightbooking-rust.vercel.app/swagger.json")
   );
   app.use(cors({ origin: "http://localhost:5173" }));
   app.use(bodyParser.json());
