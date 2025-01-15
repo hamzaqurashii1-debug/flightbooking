@@ -45,7 +45,7 @@ function initApplication(): express.Application {
     swaggerUi.serve,
     swaggerUi.setup(undefined, {
       swaggerOptions: {
-        url: "/swagger.json",
+        url: "https://flightbooking-rust.vercel.app/swagger.json",
       },
     })
   );
