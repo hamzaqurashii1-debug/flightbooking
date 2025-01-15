@@ -1,0 +1,790 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"userResponse": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"getUserByEmailReq": {
+				"properties": {
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"saveReqUser": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"updateReqUser": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"flightResponse": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"origin": {
+						"type": "string"
+					},
+					"destination": {
+						"type": "string"
+					},
+					"departureDate": {
+						"type": "string"
+					},
+					"totalSeatsLeft": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"_id",
+					"origin",
+					"destination",
+					"departureDate",
+					"totalSeatsLeft"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"getReqFlight": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"getFlights": {
+				"properties": {
+					"departureDate": {
+						"type": "string",
+						"example": "2025-01-15"
+					},
+					"origin": {
+						"type": "string"
+					},
+					"destination": {
+						"type": "string"
+					},
+					"numberOfPassengers": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"departureDate",
+					"origin",
+					"destination",
+					"numberOfPassengers"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"saveReqFlight": {
+				"properties": {
+					"departureDate": {
+						"type": "string",
+						"example": "2025-01-15T10:30:00Z"
+					},
+					"origin": {
+						"type": "string"
+					},
+					"destination": {
+						"type": "string"
+					},
+					"totalSeatsLeft": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"departureDate",
+					"origin",
+					"destination",
+					"totalSeatsLeft"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"updateReqFlight": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"origin": {
+						"type": "string"
+					},
+					"destination": {
+						"type": "string"
+					},
+					"departureDate": {
+						"type": "string"
+					},
+					"totalSeatsLeft": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"_id",
+					"origin",
+					"destination",
+					"departureDate",
+					"totalSeatsLeft"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"bookingResponse": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"flight": {
+						"type": "string"
+					},
+					"passengers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"user": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"flight",
+					"passengers",
+					"user"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"getReqBooking": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"saveReqBooking": {
+				"properties": {
+					"flight": {
+						"type": "string"
+					},
+					"passengers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"user": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"flight",
+					"passengers",
+					"user"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"updateReqBooking": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"flight": {
+						"type": "string"
+					},
+					"passengers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"user": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"flight",
+					"passengers",
+					"user"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"BearerAuth": {
+				"type": "apiKey",
+				"name": "Authorization",
+				"in": "header"
+			}
+		}
+	},
+	"info": {
+		"title": "food-delivery-service",
+		"version": "1.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"name": "Muhammad Hamza"
+		}
+	},
+	"paths": {
+		"/user/auth": {
+			"post": {
+				"operationId": "GetUserByEmail",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/userResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/getUserByEmailReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/saveUser": {
+			"post": {
+				"operationId": "SaveUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/userResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/saveReqUser"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/updateUser": {
+			"put": {
+				"operationId": "UpdateUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/userResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateReqUser"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/deleteUser/{_id}": {
+			"delete": {
+				"operationId": "DeleteUser",
+				"responses": {
+					"200": {
+						"description": "data deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/userResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "_id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/flight/getFlight": {
+			"post": {
+				"operationId": "GetFlight",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/flightResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"flight"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/getReqFlight"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/flight/getFlights": {
+			"post": {
+				"operationId": "GetFlights",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/flightResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"flight"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/getFlights"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/flight/saveFlight": {
+			"post": {
+				"operationId": "SaveFlight",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/flightResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"flight"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/saveReqFlight"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/flight/updateFlight": {
+			"put": {
+				"operationId": "UpdateFlight",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/flightResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"flight"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateReqFlight"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/flight/deleteFlight/{_id}": {
+			"delete": {
+				"operationId": "DeleteFlight",
+				"responses": {
+					"200": {
+						"description": "data deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/flightResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"flight"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "_id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/booking/getBooking": {
+			"post": {
+				"operationId": "GetBooking",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/bookingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"booking"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/getReqBooking"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/booking/saveBooking": {
+			"post": {
+				"operationId": "SaveBooking",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/bookingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"booking"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/saveReqBooking"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/booking/updateBooking": {
+			"put": {
+				"operationId": "UpdateBooking",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/bookingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"booking"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateReqBooking"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/booking/deleteBooking/{_id}": {
+			"delete": {
+				"operationId": "DeleteBooking",
+				"responses": {
+					"200": {
+						"description": "data deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/bookingResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"booking"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "_id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/booking/getAllBookings": {
+			"get": {
+				"operationId": "GetAllBookings",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/bookingResponse"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"booking"
+				],
+				"security": [
+					{
+						"BearerAuth": []
+					}
+				],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
